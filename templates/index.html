@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Convert text into natural-sounding audio instantly. A clean and fast text to audiobook web application with playback controls and speed adjustment.">
+
+    <meta name="keywords" content="text to audio, text to speech, audio generator, flask project, text to audio">
+
+    <meta name="Vritti Koshe" content="koshevritti@gmail.com">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Converter | Text to Audiobook</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="title-section">
+        <h1>READIFY 📚🎧</h1>
+        <p class="subtitle">Convert your text into immersive audio</p>
+    </div>
+
+    <form method="POST" action="/convert">
+        <textarea name="text" placeholder="Paste or type your text here..." required></textarea>
+        <button class="generate-btn" type="submit">Generate Audio</button>
+    </form>
+
+    {% if audio_file %}
+    <div class="audio-box">
+        <h3>Your Audio</h3>
+
+        <audio id="audioPlayer">
+            <source src="{{ audio_file }}" type="audio/mpeg">
+        </audio>
+
+        <div class="controls">
+            <button class="control-btn" onclick="playAudio()">▶ Start</button>
+            <button class="control-btn" onclick="pauseAudio()">⏸ Pause</button>
+            <button class="control-btn" onclick="resumeAudio()">⏯ Resume</button>
+            <button class="control-btn stop" onclick="stopAudio()">⏹ Stop</button>
+        </div>
+
+        <div class="speed-control">
+            <label>Speed: <span id="speedValue">1x</span></label>
+            <input type="range" min="0.5" max="2" step="0.25" value="1"
+                   oninput="changeSpeed(this.value)">
+        </div>
+    </div>
+    {% endif %}
+
+</div>
+
+<script>
+    const audio = document.getElementById("audioPlayer");
+    const speedValue = document.getElementById("speedValue");
+
+    function playAudio() {
+        audio.currentTime = 0;
+        audio.play();
+    }
+
+    function pauseAudio() {
+        audio.pause();
+    }
+
+    function resumeAudio() {
+        audio.play();
+    }
+
+    function stopAudio() {
+        audio.pause();
+        audio.currentTime = 0;
+    }
+
+    function changeSpeed(speed) {
+        audio.playbackRate = speed;
+        speedValue.innerText = speed + "x";
+    }
+</script>
+
+</body>
+</html>
