@@ -1,0 +1,55 @@
+{
+  "project_name": "Text to Audiobook",
+  "version": "1.0.0",
+  "description": "A dynamic web application that converts user-provided text into natural-sounding audio using text-to-speech technology.",
+  "type": "Dynamic Web Application",
+  "tech_stack": {
+    "backend": ["Python", "Flask"],
+    "frontend": ["HTML", "CSS", "JavaScript"],
+    "text_to_speech": "gTTS",
+    "server": "Gunicorn"
+  },
+  "features": [
+    "Text to audio conversion",
+    "Start (landing) page",
+    "Audio playback controls (play, pause, resume, stop)",
+    "Playback speed control using slider",
+    "Responsive and modern UI",
+    "Dynamic audio generation"
+  ],
+  "pages": {
+    "start_page": "/",
+    "converter_page": "/convert"
+  },
+  "audio_settings": {
+    "language": "en",
+    "default_speed": "1x",
+    "min_speed": "0.5x",
+    "max_speed": "2x",
+    "output_format": "mp3"
+  },
+  "project_structure": {
+    "app_file": "app.py",
+    "templates": ["start.html", "index.html"],
+    "static": {
+      "css": ["start.css", "style.css"],
+      "audio": ["audiobook.mp3"]
+    }
+  },
+  "deployment": {
+    "platform": "Render",
+    "build_command": "pip install -r requirements.txt",
+    "start_command": "gunicorn app:app"
+  },
+  "seo": {
+    "meta_description": "Convert text into natural-sounding audio instantly with a modern text to audiobook web application.",
+    "sitemap": "/static/sitemap.xml",
+    "robots": "/static/robots.txt"
+  },
+  "author": {
+    "name": "Your Name",
+    "role": "Developer"
+  },
+  "status": "Completed",
+  "license": "MIT"
+}
